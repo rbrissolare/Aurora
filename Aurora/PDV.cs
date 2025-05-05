@@ -17,7 +17,7 @@ namespace Aurora
 {
     public partial class PDV : Form
     {
-        private string connectionBancoDeDadosCredenciais = "Server=localhost;Database=auroravendasdb;Uid=root;Pwd=w2e5d4cc;";
+        private string connectionBancoDeDadosCredenciais = "Server=localhost;Database=auroravendasdb;Uid=root;Pwd=admin;";
 
 
         public PDV()
@@ -280,6 +280,10 @@ namespace Aurora
             if (qntEstoque.Value <= 0) 
             {
               MessageBox.Show("Estoque Insuficiente!", "Erro Crítico!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtNomeProduto.Clear();
+                txtValorVenda.Value = 0;
+                txtQuantidade.Value = 1;
+                txtTotal.Clear();
                 return;              
             } 
             else if (txtQuantidade.Value > qntEstoque.Value)
@@ -358,6 +362,11 @@ namespace Aurora
             if (qntEstoque.Value <= 0)
             {
                 MessageBox.Show("Estoque Insuficiente!", "Erro Crítico!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                txtNomeProduto.Clear();
+                txtValorVenda.Value = 0;
+                txtQuantidade.Value = 1;
+                txtTotal.Clear();
+
                 return;
             }
             else if (txtQuantidade.Value > qntEstoque.Value)

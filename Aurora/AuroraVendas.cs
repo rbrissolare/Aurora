@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Mysqlx.Cursor;
 
 namespace Aurora
 {
@@ -39,7 +40,7 @@ namespace Aurora
 
         private void btnCadastrarProduto_Click(object sender, EventArgs e)
         {
-            new CadastroProduto().Show();
+          new CadastroProduto().Show();
         }
 
         private void btnEditarPrdutos_Click(object sender, EventArgs e)
@@ -55,6 +56,11 @@ namespace Aurora
         private void btnCancelarVenda_Click(object sender, EventArgs e)
         {
             new CancelarVenda().Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            new Relatorios().Show();
         }
     }
 }

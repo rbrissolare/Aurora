@@ -16,7 +16,7 @@ namespace Aurora
 {
     public partial class CancelarVenda : Form
     {
-        private string connectionBancoDeDadosCredenciais = "Server=localhost;Database=auroravendasdb;Uid=root;Pwd=w2e5d4cc;";
+        private string connectionBancoDeDadosCredenciais = "Server=localhost;Database=auroravendasdb;Uid=root;Pwd=admin;";
         public CancelarVenda()
         {
             InitializeComponent();
@@ -78,9 +78,18 @@ namespace Aurora
 
         private void btnCancelarVenda_Click(object sender, EventArgs e)
         {
+            string recebeIDCancelarVendas = txtIdVenda.Text.Trim();
+            var listaItens = new List<(int idProd, int Qnt)>();
+            var listaVendas = new List<(int idVenda, int idCliente)>();
+            
+            
             // CODIGO PARA CANCELAR //
 
-            string recebeIDCancelarVendas = txtIdVenda.Text.Trim();
+            if (recebeIDCancelarVendas == "")
+            {
+                MessageBox.Show("Informe uma venda para cancelar");
+                return;
+            }           
 
             using(MySqlConnection connectionDb = new MySqlConnection(connectionBancoDeDadosCredenciais))
             {
@@ -90,8 +99,6 @@ namespace Aurora
                 {
                     try
                     {
-                        var listaItens = new List<(int idProd, int Qnt)>();
-
                         string lerProdutosCancelamento = @"SELECT idvendas, idprodutos, quantidade,valor_unitario,valor_total,categoria FROM vendas_itens WHERE idvendas = @Idvendas;";
                         using(MySqlCommand lerProdutos = new MySqlCommand(lerProdutosCancelamento, connectionDb, cancelarVendas))
                         {
@@ -107,8 +114,20 @@ namespace Aurora
                                 }
                             }
                         }
-                        
-                        string removeVendaItens = @"DELETE FROM vendas_itens WHERE idvendas = @Idvendas;";
+
+                        string lerVendasCancelamento = @"SELECT idvendas, idclientes, data_venda, valor_total FROM vendas WHERE idvendas = @Idvendas LIMIT 1;";
+                        using (MySqlCommand lerVendas = new MySqlCommand(lerVendasCancelamento, connectionDb, cancelarVendas))
+                        {
+                            lerVendas.Parameters.AddWithValue("@Idvendas", recebeIDCancelarVendas);
+                                var existe = lerVendas.ExecuteScalar() != null;
+                                if (!existe)
+                                {
+                                    MessageBox.Show("Venda não localizada");
+                                    return;
+                                }
+                        }
+
+                            string removeVendaItens = @"DELETE FROM vendas_itens WHERE idvendas = @Idvendas;";
 
                         using (MySqlCommand executarCancelamentoProdutos = new MySqlCommand(removeVendaItens,connectionDb,cancelarVendas))
                         {

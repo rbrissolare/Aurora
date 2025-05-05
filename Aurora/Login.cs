@@ -44,7 +44,7 @@ namespace Aurora
      
         private void button1_Click(object sender, EventArgs e)
         {
-
+           
             // Vou criar as variaveis locais para armazenar o que os usuarios digitaram, em seguida vou remover os espaços em brancos usando o Trim().
             string usuario = txtUsuario.Text.Trim();
             string senha = txtSenha.Text.Trim();

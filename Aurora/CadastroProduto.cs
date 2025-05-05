@@ -13,7 +13,7 @@ namespace Aurora
 {
     public partial class CadastroProduto : Form
     {
-        private string connectionBancoDeDados = "Server=localhost;Database=auroravendasdb;Uid=root;Pwd=w2e5d4cc;";
+        private string connectionBancoDeDados = "Server=localhost;Database=auroravendasdb;Uid=root;Pwd=admin;";
         public CadastroProduto()
         {
             InitializeComponent();

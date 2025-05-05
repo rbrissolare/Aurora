@@ -9,7 +9,7 @@ namespace Aurora
 {
     internal class Conexao // Mudei de Class1 para Conexao, definindo o nome da Classe.
     {
-        private string conexaoString = ("server=localhost;port=3306;database=auroravendasdb;uid=root;pwd=w2e5d4cc;"); // Criei uma variável privada chamada conexaoString, contendo as informações do DB.
+        private string conexaoString = ("server=localhost;port=3306;database=auroravendasdb;uid=root;pwd=admin;"); // Criei uma variável privada chamada conexaoString, contendo as informações do DB.
 
         public MySqlConnection conexao; // Criei o objeto que irá representar a conexão com o Banco.
 
@@ -30,7 +30,7 @@ namespace Aurora
                 return true; // Caso as operações: conexao.Open() e conexao.Close() funcionem corretamente, irá retornar True, isso significa que o teste de conexão com o Banco foi realizado com sucesso.
 
             }
-            catch (Exception ex) // Entretanto se algumas das operações: conexao.Open() ou conexao.Close() falhar, o catch irá capturar a exceção (o erro) e irá tratar no bloco abaixo.
+            catch (Exception) // Entretanto se algumas das operações: conexao.Open() ou conexao.Close() falhar, o catch irá capturar a exceção (o erro) e irá tratar no bloco abaixo.
             {
                 System.Windows.Forms.MessageBox.Show("Erro ao conectar com o banco de dados. Verifique sua Conexão."); // Primeiro ele irá mostrar uma mensagem ao Usuário, informando o Erro ao se conectar ao DB.
                 return false; // Segundo irá retornar False, encerrando a tentativa de conexão e encerrando todo o bloco/ação do usuário. Até que ela se repita.

@@ -36,6 +36,7 @@
             this.btnCadastrarProduto = new System.Windows.Forms.Button();
             this.btnEditarPrdutos = new System.Windows.Forms.Button();
             this.btnCancelarVenda = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // dateTimePicker1
@@ -123,6 +124,16 @@
             this.btnCancelarVenda.UseVisualStyleBackColor = true;
             this.btnCancelarVenda.Click += new System.EventHandler(this.btnCancelarVenda_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(15, 164);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 35);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Relatorios";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // AuroraVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -130,6 +141,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1584, 861);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCancelarVenda);
             this.Controls.Add(this.btnEditarPrdutos);
             this.Controls.Add(this.btnCadastrarProduto);
@@ -157,5 +169,6 @@
         private System.Windows.Forms.Button btnCadastrarProduto;
         private System.Windows.Forms.Button btnEditarPrdutos;
         private System.Windows.Forms.Button btnCancelarVenda;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -16,7 +16,7 @@ namespace Aurora
 {
     public partial class EditarCliente : Form
     {
-        private string connectionString = "Server=localhost;Database=auroravendasdb;Uid=root;Pwd=w2e5d4cc;";
+        private string connectionString = "Server=localhost;Database=auroravendasdb;Uid=root;Pwd=admin;";
         public EditarCliente()
         {
             InitializeComponent();

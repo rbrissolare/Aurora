@@ -14,7 +14,7 @@ namespace Aurora
     public partial class CadastroCliente : Form
     {
         // AQUI: Declare a string de conexão como campo da classe
-        private string connectionString = "Server=localhost;Database=auroravendasdb;Uid=root;Pwd=w2e5d4cc;";
+        private string connectionString = "Server=localhost;Database=auroravendasdb;Uid=root;Pwd=admin;";
         public CadastroCliente()
         {
             InitializeComponent();

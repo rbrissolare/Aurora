@@ -174,6 +174,7 @@
             this.Controls.Add(this.dtpFim);
             this.Controls.Add(this.dtpInicio);
             this.Name = "CancelarVenda";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cancelar Venda";
             ((System.ComponentModel.ISupportInitialize)(this.dgvCancelarVendas)).EndInit();
             this.ResumeLayout(false);
