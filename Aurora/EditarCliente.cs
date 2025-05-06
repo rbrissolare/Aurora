@@ -171,7 +171,7 @@ namespace Aurora
 
         private void btnSair_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void txtRenda_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)

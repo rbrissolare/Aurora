@@ -13,7 +13,7 @@ namespace Aurora
 {
     public partial class EditarProdutos : Form
     {
-        private string connectionBancoDeDados = "Server=localhost;Database=auroravendasdb;Uid=root;Pwd=adming;";
+        private string connectionBancoDeDados = "Server=localhost;Database=auroravendasdb;Uid=root;Pwd=admin;";
         public EditarProdutos()
         {
             InitializeComponent();
@@ -21,7 +21,7 @@ namespace Aurora
 
         private void label7_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)

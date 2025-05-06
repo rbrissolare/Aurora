@@ -24,6 +24,7 @@ namespace Aurora
             {
                 return; // Por outro lado, se o metodo TestarConexao() retornar False a negação ! converte em true, e então o bloco If é executado, interrompendo a execução com o return.
             }
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -90,7 +91,7 @@ namespace Aurora
 
                     if (resultado > 0)
                     {
-                        MessageBox.Show("Login efetuado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("Login efetuado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         // Agora vamos adicionar abertura do Sistema após a mensagem de Login:
 
                        
@@ -132,12 +133,20 @@ namespace Aurora
 
         private void txtSenha_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtSenha_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13) // uma das formas de usar não é a mais adequada
+            {
+                button1_Click(sender, e);
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using Mysqlx.Cursor;
 
 namespace Aurora
@@ -30,37 +31,150 @@ namespace Aurora
 
         private void btnCadastrarCliente_Click(object sender, EventArgs e)
         {
-           new CadastroCliente().Show();
+            bool verificarSeCadastrarClienteAberta = Application.OpenForms.OfType<CadastroCliente>().Any();
+            if (verificarSeCadastrarClienteAberta)
+            {
+                MessageBox.Show("A janela de cadastros de clientes já está aberta.", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                var form = Application.OpenForms.OfType<CadastroCliente>().FirstOrDefault();
+                if(form != null)
+                {
+                    form.BringToFront();
+                    form.WindowState = FormWindowState.Normal;
+                }
+            }
+            else
+            {
+                new CadastroCliente().Show();
+            }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-           new EditarCliente().Show();
+            bool verificarSeEditarClienteAberta = Application.OpenForms.OfType<EditarCliente>().Any();
+
+            if (verificarSeEditarClienteAberta)
+            {
+                MessageBox.Show("A janela de editar clientes já está aberta.", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                var form = Application.OpenForms.OfType<EditarCliente>().FirstOrDefault();
+                if(form != null)
+                {
+                    form.BringToFront();
+                    form.WindowState = FormWindowState.Normal;
+                }
+            }
+            else
+            {
+                new EditarCliente().Show();
+            }
         }
 
         private void btnCadastrarProduto_Click(object sender, EventArgs e)
         {
-          new CadastroProduto().Show();
+            bool verificarSeCadastrarProdutoAberta = Application.OpenForms.OfType<CadastroProduto>().Any();
+
+            if (verificarSeCadastrarProdutoAberta)
+            {
+                MessageBox.Show("A janela de cadastro de produtos já está aberta.", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                var form = Application.OpenForms.OfType<CadastroProduto>().FirstOrDefault();
+                if (form != null)
+                {
+                    form.BringToFront();
+                    form.WindowState = FormWindowState.Normal;
+                }
+            }
+            else
+            {
+                new CadastroProduto().Show();
+            }
         }
 
         private void btnEditarPrdutos_Click(object sender, EventArgs e)
         {
-            new EditarProdutos().Show();
+            
+            bool verificarSeTelaEditarProdutosAberta = Application.OpenForms.OfType<EditarProdutos>().Any();
+
+            if (verificarSeTelaEditarProdutosAberta)
+            {
+                MessageBox.Show("A janela de edição de produtos já está aberta.", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                var form = Application.OpenForms.OfType<EditarProdutos>().FirstOrDefault();
+                if (form != null)
+                {
+                    form.BringToFront();
+                    form.WindowState = FormWindowState.Normal;
+                }
+
+            }
+            else
+            {
+                new EditarProdutos().Show();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new PDV().Show();
+            bool verificarSeTelaPDVAberta = Application.OpenForms.OfType<PDV>().Any();
+            if (verificarSeTelaPDVAberta)
+            {
+                MessageBox.Show("A janela de PDV já está aberta.", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                var form = Application.OpenForms.OfType<PDV>().FirstOrDefault();
+                if(form != null)
+                {
+                    form.BringToFront();
+                    form.WindowState = FormWindowState.Maximized;
+                }
+            }
+            else
+            {
+                new PDV().Show();
+            }
         }
 
         private void btnCancelarVenda_Click(object sender, EventArgs e)
         {
-            new CancelarVenda().Show();
+            bool verificarSeTelaCancelarVendaAberta = Application.OpenForms.OfType<CancelarVenda>().Any();
+            if (verificarSeTelaCancelarVendaAberta)
+            {
+                MessageBox.Show("A janela de cancelar vendas já está aberta.", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                var form = Application.OpenForms.OfType<CancelarVenda>().FirstOrDefault();
+
+                if(form != null)
+                {
+                    form.BringToFront();
+                    form.WindowState = FormWindowState.Normal;
+                }
+
+            }
+            else
+            {
+                new CancelarVenda().Show();
+            }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            new Relatorios().Show();
+            bool verificarSeTelaRelatoriosAberta = Application.OpenForms.OfType<Relatorios>().Any();
+            if (verificarSeTelaRelatoriosAberta)
+            {
+                MessageBox.Show("A janela de relatórios já está aberta.", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                var form = Application.OpenForms.OfType<Relatorios>().FirstOrDefault();
+                if(form != null)
+                {
+                    form.BringToFront();
+                    form.WindowState = FormWindowState.Maximized;
+                }
+
+            }
+            else
+            {
+                new Relatorios().Show();
+            }
         }
     }
 }

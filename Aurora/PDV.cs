@@ -23,6 +23,7 @@ namespace Aurora
         public PDV()
         {
             InitializeComponent();
+            this.KeyPreview = true;
 
         }
 
@@ -67,7 +68,20 @@ namespace Aurora
                             }
                             else
                             {
-                                MessageBox.Show("Nenhum cliente cadastrado com esse CPF.");
+                               DialogResult resultadoPesquisaCliente = MessageBox.Show($"Nenhum cliente cadastrado com esse CPF: {txtBuscadorCpf.Text.Replace(",", ".").Replace(" ","").Trim()}. Deseja Cadastrar?", "Cliente não localizado", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                                switch (resultadoPesquisaCliente)
+                                {
+                                    case DialogResult.Yes:
+                                        new CadastroCliente().Show();
+                                        break;
+
+                                    case DialogResult.No:
+                                        MessageBox.Show("Digite o CPF novamente para realizar uma nova busca.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        txtBuscadorCpf.Clear();
+                                        txtBuscadorCpf.Focus();
+                                        return;
+                                }
                             }
 
 
@@ -96,46 +110,70 @@ namespace Aurora
         {
             string buscadoraProduto = txtPesquisarProduto.Text.Trim();
 
-            string buscarProdutoBanco = "SELECT * FROM produtos where idprodutos = @idprodutos";
+            int idProduto;
 
-            using (MySqlConnection connectionBancoDB = new MySqlConnection(connectionBancoDeDadosCredenciais))
+            bool isNumerico = int.TryParse(buscadoraProduto, out idProduto);
+
+            string buscarProdutoBanco;
+
+            //string buscarProdutoBanco = "SELECT * FROM produtos where idprodutos = @idprodutos OR nome LIKE @nome;";
+
+            if (isNumerico)
             {
-                try
+                buscarProdutoBanco = "SELECT * FROM produtos where idprodutos = @idprodutos;";
+            }
+            else
+            {
+                buscarProdutoBanco = "SELECT * FROM produtos where nome LIKE @nome;";
+            }
+
+
+
+                using (MySqlConnection connectionBancoDB = new MySqlConnection(connectionBancoDeDadosCredenciais))
                 {
-                    connectionBancoDB.Open();
-
-                    using (MySqlCommand buscador = new MySqlCommand(buscarProdutoBanco, connectionBancoDB))
+                    try
                     {
-                        buscador.Parameters.AddWithValue("@idprodutos", buscadoraProduto);
+                        connectionBancoDB.Open();
 
-                        using (MySqlDataReader leitor = buscador.ExecuteReader())
+                        using (MySqlCommand buscador = new MySqlCommand(buscarProdutoBanco, connectionBancoDB))
                         {
-                            if (leitor.Read())
+                            if (isNumerico)
+                        {
+                            buscador.Parameters.AddWithValue("@idprodutos", buscadoraProduto);
+                        }
+                        else
+                        {
+                            buscador.Parameters.AddWithValue("@nome", "%" + buscadoraProduto + "%");
+                        }
+
+                            using (MySqlDataReader leitor = buscador.ExecuteReader())
                             {
-                                txtIdProduto.Text = leitor["idprodutos"].ToString();
-                                txtNomeProduto.Text = leitor["nome"].ToString();
-                                qntEstoque.Text = leitor["quantidade"].ToString();
-                                txtValorVenda.Text = leitor["valor_venda"].ToString();
-                                txtCategoriaProduto.Text = leitor["categoria"].ToString();
-                            }
-                            else
-                            {
-                                MessageBox.Show($"Nenhum Produto Encontrado com o ID: {buscadoraProduto} fornecido.", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                if (leitor.Read())
+                                {
+                                    txtIdProduto.Text = leitor["idprodutos"].ToString();
+                                    txtNomeProduto.Text = leitor["nome"].ToString();
+                                    qntEstoque.Text = leitor["quantidade"].ToString();
+                                    txtValorVenda.Text = leitor["valor_venda"].ToString();
+                                    txtCategoriaProduto.Text = leitor["categoria"].ToString();
+                                }
+                                else
+                                {
+                                    MessageBox.Show($"Nenhum Produto Encontrado com o ID: {buscadoraProduto} fornecido.", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
+
                             }
 
                         }
-
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error ao Capturar os Dados do Produto" + ex.Message, "Critical!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        txtPesquisarProduto.Clear();
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error ao Capturar os Dados do Produto" + ex.Message, "Critical!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    txtPesquisarProduto.Clear();
-                }
-            }
 
         }
 
@@ -249,6 +287,9 @@ namespace Aurora
             decimal lerQuantidade = txtQuantidade.Value;
             decimal lerValorTotal = txtValorVenda.Value * txtQuantidade.Value;
 
+            Button btnExluirProdutos = new Button();
+            btnExluirProdutos.Text = "Excluir";
+
 
 
             //MessageBox.Show($"Produto: {lerNomeProduto} Valor UN(R$): {lerValorProduto} qnt: {lerQuantidade} Valor total(R$): {lerValorTotal}"); // consegui adicionar a quantidade em uma mensagem... agora preciso adicionar isso no tblExibirProdutos
@@ -284,6 +325,8 @@ namespace Aurora
                 txtValorVenda.Value = 0;
                 txtQuantidade.Value = 1;
                 txtTotal.Clear();
+                txtPesquisarProduto.Focus();
+
                 return;              
             } 
             else if (txtQuantidade.Value > qntEstoque.Value)
@@ -298,14 +341,14 @@ namespace Aurora
             }
             else
             {
-                dataGridView1.Rows.Add(LerIdProduto, lerNomeProduto, lerCategoria, lerValorProduto, lerQuantidade, lerValorTotal);
+                dataGridView1.Rows.Add(LerIdProduto, lerNomeProduto, lerCategoria, lerValorProduto, lerQuantidade, lerValorTotal, btnExluirProdutos.Text);
             }
 
             //linhaAtual++; // para a proxima adição.
 
             totalGeral += lerValorTotal;
 
-            lblTotalGeral.Text = totalGeral.ToString("N2");
+            lblTotalGeral.Text = $"Total R$: {totalGeral.ToString("N2")};";
 
         }
 
@@ -340,121 +383,112 @@ namespace Aurora
         }
 
         private void btnFinalizarVenda_Click(object sender, EventArgs e)
-        {         
-            
-            
+        {
 
 
+            DialogResult confirmaVenda = MessageBox.Show("Deseja finalizar a venda?", "Finalizar venda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            //Criar as Strings para Fazer o Insert no DB
-            string connStr = connectionBancoDeDadosCredenciais;
-            string recebeIDCliente = txtIdCliente.Text.Trim();
-            string recebeIDProduto = txtIdProduto.Text.Trim();
-            string recebeCategoriaProduto = txtCategoriaProduto.Text.Trim();
-
-           
-            decimal recebeValorVenda = txtValorVenda.Value;
-            decimal recebeQuantidade = txtQuantidade.Value;
-            decimal recebeTotalProdutos = totalGeral;
-            decimal recebeTotal = txtValorVenda.Value * txtQuantidade.Value;
-
-
-            if (qntEstoque.Value <= 0)
+            switch (confirmaVenda)
             {
-                MessageBox.Show("Estoque Insuficiente!", "Erro Crítico!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                txtNomeProduto.Clear();
-                txtValorVenda.Value = 0;
-                txtQuantidade.Value = 1;
-                txtTotal.Clear();
+                case DialogResult.Yes:
+                    //Criar as Strings para Fazer o Insert no DB
+                    string connStr = connectionBancoDeDadosCredenciais;
+                    string recebeIDCliente = txtIdCliente.Text.Trim();
+                    string recebeIDProduto = txtIdProduto.Text.Trim();
+                    string recebeCategoriaProduto = txtCategoriaProduto.Text.Trim();
 
-                return;
-            }
-            else if (txtQuantidade.Value > qntEstoque.Value)
-            {
-                MessageBox.Show("Quantidade não disponivel para venda!", "Erro Crítico!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            else if (txtNomeProduto.Text == "")
-            {
-                MessageBox.Show("Adicione ao menos um Produto!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            else if (txtIdCliente.Text == "")
-            {
-                MessageBox.Show("Adicione ao menos um Cliente!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
-            
-                //AQUI VOU APRENDER UM METODO CHAMADO TRANSACIONAL....//
 
-                using (var conn = new MySqlConnection(connStr))
-                {
-                    conn.Open();
+                    decimal recebeValorVenda = txtValorVenda.Value;
+                    decimal recebeQuantidade = txtQuantidade.Value;
+                    decimal recebeTotalProdutos = totalGeral;
+                    decimal recebeTotal = txtValorVenda.Value * txtQuantidade.Value;
 
-                    using (var tx = conn.BeginTransaction())
+                    if (dataGridView1.Rows.Count <= 0)
                     {
-                        try
+                        MessageBox.Show("Adicione ao menos um Produto!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+                    else if (string.IsNullOrWhiteSpace(txtIdCliente.Text))
+                    {
+                        MessageBox.Show("Adicione ao menos um Cliente!", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+
+                    //AQUI VOU APRENDER UM METODO CHAMADO TRANSACIONAL....//
+
+                    using (var conn = new MySqlConnection(connStr))
+                    {
+                        conn.Open();
+
+                        using (var tx = conn.BeginTransaction())
                         {
-                            string sqlVenda = @"INSERT INTO vendas (idclientes, data_venda, valor_total) VALUES (@idCli, @data, @total);";
-                            using (var cmdVenda = new MySqlCommand(sqlVenda, conn, tx))
+                            try
                             {
-                                cmdVenda.Parameters.AddWithValue("@idCli", recebeIDCliente);
-                                cmdVenda.Parameters.AddWithValue("@data", DateTime.Now);
-                                cmdVenda.Parameters.AddWithValue("@total", recebeTotalProdutos);
-                                cmdVenda.ExecuteNonQuery();
-
-                                long novoIdVenda = cmdVenda.LastInsertedId;
-
-                                foreach (DataGridViewRow row in dataGridView1.Rows)
+                                string sqlVenda = @"INSERT INTO vendas (idclientes, data_venda, valor_total) VALUES (@idCli, @data, @total);";
+                                using (var cmdVenda = new MySqlCommand(sqlVenda, conn, tx))
                                 {
-                                    if (row.IsNewRow) continue;
-                                    {
-                                        var idProduto = row.Cells["idProd"].Value;
-                                        var idCategoria = row.Cells["ctgProd"].Value;
-                                        var idValorVenda = row.Cells["vendaProd"].Value;
-                                        var idQuantidade = row.Cells["qntProd"].Value;
-                                        var idTotal = row.Cells["totalProd"].Value;
+                                    cmdVenda.Parameters.AddWithValue("@idCli", recebeIDCliente);
+                                    cmdVenda.Parameters.AddWithValue("@data", DateTime.Now);
+                                    cmdVenda.Parameters.AddWithValue("@total", recebeTotalProdutos);
+                                    cmdVenda.ExecuteNonQuery();
 
-                                        string sqlItem = @"INSERT INTO vendas_itens (idvendas, idprodutos, quantidade, valor_unitario, valor_total, categoria)
+                                    long novoIdVenda = cmdVenda.LastInsertedId;
+
+                                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                                    {
+                                        if (row.IsNewRow) continue;
+                                        {
+                                            var idProduto = row.Cells["idProd"].Value;
+                                            var idCategoria = row.Cells["ctgProd"].Value;
+                                            var idValorVenda = row.Cells["vendaProd"].Value;
+                                            var idQuantidade = row.Cells["qntProd"].Value;
+                                            var idTotal = row.Cells["totalProd"].Value;
+
+                                            string sqlItem = @"INSERT INTO vendas_itens (idvendas, idprodutos, quantidade, valor_unitario, valor_total, categoria)
 VALUES (@idVendas, @idProdutos, @quantidade, @valorUni, @valorTotal, @categoria);";
 
-                                        using (var cmdItem = new MySqlCommand(sqlItem, conn, tx))
-                                        {
-                                            cmdItem.Parameters.AddWithValue("@idVendas", novoIdVenda);
-                                            cmdItem.Parameters.AddWithValue("@idProdutos", idProduto);
-                                            cmdItem.Parameters.AddWithValue("@quantidade", idQuantidade);
-                                            cmdItem.Parameters.AddWithValue("@valorUni", idValorVenda);
-                                            cmdItem.Parameters.AddWithValue("@valorTotal", idTotal);
-                                            cmdItem.Parameters.AddWithValue("@categoria", idCategoria);
-                                            cmdItem.ExecuteNonQuery();
-                                        }
+                                            using (var cmdItem = new MySqlCommand(sqlItem, conn, tx))
+                                            {
+                                                cmdItem.Parameters.AddWithValue("@idVendas", novoIdVenda);
+                                                cmdItem.Parameters.AddWithValue("@idProdutos", idProduto);
+                                                cmdItem.Parameters.AddWithValue("@quantidade", idQuantidade);
+                                                cmdItem.Parameters.AddWithValue("@valorUni", idValorVenda);
+                                                cmdItem.Parameters.AddWithValue("@valorTotal", idTotal);
+                                                cmdItem.Parameters.AddWithValue("@categoria", idCategoria);
+                                                cmdItem.ExecuteNonQuery();
+                                            }
 
-                                        string sqlUpd = @"UPDATE produtos SET quantidade = quantidade - @qnt WHERE idprodutos = @idProd;";
-                                        using (var cmdUpd = new MySqlCommand(sqlUpd, conn, tx))
-                                        {
-                                            cmdUpd.Parameters.AddWithValue("@qnt", idQuantidade);
-                                            cmdUpd.Parameters.AddWithValue("@idProd", idProduto);
-                                            cmdUpd.ExecuteNonQuery();
+                                            string sqlUpd = @"UPDATE produtos SET quantidade = quantidade - @qnt WHERE idprodutos = @idProd;";
+                                            using (var cmdUpd = new MySqlCommand(sqlUpd, conn, tx))
+                                            {
+                                                cmdUpd.Parameters.AddWithValue("@qnt", idQuantidade);
+                                                cmdUpd.Parameters.AddWithValue("@idProd", idProduto);
+                                                cmdUpd.ExecuteNonQuery();
+                                            }
                                         }
                                     }
                                 }
+                                tx.Commit();
+                                MessageBox.Show($"Venda Efetuada com Sucesso");
+                                this.Close();
+                                new PDV().Show();
+
                             }
-                            tx.Commit();
-                            MessageBox.Show($"Venda Efetuada com Sucesso");
-                            this.Close();
-                            new PDV().Show();
-                        
-                        }
-                        catch (Exception ex)
-                        {
-                            tx.Rollback();
-                            MessageBox.Show($"Erro ao finalizar venda: {ex.Message}");
+                            catch (Exception ex)
+                            {
+                                tx.Rollback();
+                                MessageBox.Show($"Erro ao finalizar venda: {ex.Message}");
+                            }
+
                         }
 
                     }
+                    break;
 
-                }
+                case DialogResult.No:
+                    return;
 
+            }  
         }
         private void txtCpf_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
@@ -492,6 +526,95 @@ VALUES (@idVendas, @idProdutos, @quantidade, @valorUni, @valorTotal, @categoria)
         }
 
         private void dataGridView1_CellContentClick_4(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Acao"].Index)
+            {
+                // Obtém a linha selecionada
+                DataGridViewRow linhaSelecionada = dataGridView1.Rows[e.RowIndex];
+
+                // Exibe mensagem de confirmação
+                DialogResult confirmacao = MessageBox.Show(
+                    $"Deseja remover o produto '{linhaSelecionada.Cells["nmdProd"].Value}' da lista?",
+                    "Confirmar Exclusão",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (confirmacao == DialogResult.Yes)
+                {
+                    // Remove a linha selecionada
+                    dataGridView1.Rows.RemoveAt(e.RowIndex);
+                }
+            }
+        }
+
+        private void txtPesquisarProduto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                btnPesquisarProduto_Click_1(sender, e);
+            }
+        }
+
+        private void txtPesquisarProduto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PDV_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            string armazenaAtalho = e.KeyCode.ToString();
+
+            switch (armazenaAtalho)
+            {
+                case var fUm when e.KeyCode == Keys.F1:
+                    txtBuscadorCpf.Focus();
+                    e.Handled = true;
+                    break;
+
+                case var fDois when e.KeyCode == Keys.F2:
+                    txtPesquisarProduto.Focus();
+                    e.Handled = true;
+                    break;
+
+                case var spaceAdd when e.KeyCode == Keys.Space:
+                    btnAdicionar_Click(sender, e);
+                    e.Handled = true;
+                    break;
+
+                case var cancelaAdd when e.KeyCode == Keys.Delete:
+                    btnCancelar_Click(sender, e);
+                    e.Handled = true;
+                    break;
+
+                case var fDoze when e.KeyCode == Keys.F12:
+                    btnFinalizarVenda_Click(sender,e);
+                    e.Handled = true;
+                    break;
+            }
+                            
+            //if (e.KeyCode == Keys.F2)
+            //{
+            //    txtPesquisarProduto.Focus();
+            //    e.Handled = true;
+                
+            //}
+        }
+
+        private void label8_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBuscadorCpf_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                btnPesquisar_Click(sender,e);
+            }
+        }
+
+        private void btnFinalizarVenda_KeyDown(object sender, KeyEventArgs e)
         {
 
         }

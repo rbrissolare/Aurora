@@ -46,7 +46,7 @@ namespace Aurora
 
         private void label7_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void txtCodigoProduto_ValueChanged(object sender, EventArgs e)
