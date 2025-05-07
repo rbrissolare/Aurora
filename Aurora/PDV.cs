@@ -348,7 +348,7 @@ namespace Aurora
 
             totalGeral += lerValorTotal;
 
-            lblTotalGeral.Text = $"Total R$: {totalGeral.ToString("N2")};";
+            lblTotalGeral.Text = $"Total R$: {totalGeral.ToString("N2")}";
 
         }
 
@@ -384,7 +384,7 @@ namespace Aurora
 
         private void btnFinalizarVenda_Click(object sender, EventArgs e)
         {
-
+            long novoIdVend = 0;
 
             DialogResult confirmaVenda = MessageBox.Show("Deseja finalizar a venda?", "Finalizar venda", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -432,7 +432,8 @@ namespace Aurora
                                     cmdVenda.Parameters.AddWithValue("@total", recebeTotalProdutos);
                                     cmdVenda.ExecuteNonQuery();
 
-                                    long novoIdVenda = cmdVenda.LastInsertedId;
+                                   long novoIdVenda = cmdVenda.LastInsertedId;
+                                   novoIdVend = cmdVenda.LastInsertedId;
 
                                     foreach (DataGridViewRow row in dataGridView1.Rows)
                                     {
@@ -466,13 +467,17 @@ VALUES (@idVendas, @idProdutos, @quantidade, @valorUni, @valorTotal, @categoria)
                                                 cmdUpd.ExecuteNonQuery();
                                             }
                                         }
+                                        
                                     }
                                 }
+
                                 tx.Commit();
                                 MessageBox.Show($"Venda Efetuada com Sucesso");
+                                EmitirCupom.Imprimir((int)novoIdVend);
                                 this.Close();
                                 new PDV().Show();
-
+                                                           
+                               
                             }
                             catch (Exception ex)
                             {
@@ -529,10 +534,10 @@ VALUES (@idVendas, @idProdutos, @quantidade, @valorUni, @valorTotal, @categoria)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridView1.Columns["Acao"].Index)
             {
-                // Obtém a linha selecionada
+                // Obtém a linha selecionada  
                 DataGridViewRow linhaSelecionada = dataGridView1.Rows[e.RowIndex];
 
-                // Exibe mensagem de confirmação
+                // Exibe mensagem de confirmação  
                 DialogResult confirmacao = MessageBox.Show(
                     $"Deseja remover o produto '{linhaSelecionada.Cells["nmdProd"].Value}' da lista?",
                     "Confirmar Exclusão",
@@ -541,8 +546,22 @@ VALUES (@idVendas, @idProdutos, @quantidade, @valorUni, @valorTotal, @categoria)
 
                 if (confirmacao == DialogResult.Yes)
                 {
-                    // Remove a linha selecionada
+                    var removeValorTotalProduto = dataGridView1.Rows[e.RowIndex].Cells["totalProd"].Value;
+                    
+                    // Remove a linha selecionada  
                     dataGridView1.Rows.RemoveAt(e.RowIndex);
+
+                    if (removeValorTotalProduto != null && decimal.TryParse(removeValorTotalProduto.ToString(), out decimal valorProduto))
+                    {
+                        // Subtrai o valor do produto removido do total geral
+                        totalGeral -= valorProduto;
+                        lblTotalGeral.Text = $"Total R$: {totalGeral.ToString("N2")}";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao calcular o valor total.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
                 }
             }
         }
@@ -577,7 +596,7 @@ VALUES (@idVendas, @idProdutos, @quantidade, @valorUni, @valorTotal, @categoria)
                     e.Handled = true;
                     break;
 
-                case var spaceAdd when e.KeyCode == Keys.Space:
+                case var spaceAdd when e.KeyCode == Keys.Insert:
                     btnAdicionar_Click(sender, e);
                     e.Handled = true;
                     break;

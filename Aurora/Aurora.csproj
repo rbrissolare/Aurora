@@ -105,6 +105,11 @@
     <Compile Include="CadastroProduto.Designer.cs">
       <DependentUpon>CadastroProduto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bematech.cs" />
+    <Compile Include="BuscarVendasDB.cs" />
+    <Compile Include="EmitirCupom.cs" />
+    <Compile Include="Produto.cs" />
+    <Compile Include="RawPrinterHelper.cs" />
     <Compile Include="ConexaoDB.cs" />
     <Compile Include="AuroraVendas.cs">
       <SubType>Form</SubType>

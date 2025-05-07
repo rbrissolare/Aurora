@@ -66,8 +66,6 @@
             this.btnFinalizarVenda = new System.Windows.Forms.Button();
             this.txtIdCliente = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtIdProduto = new System.Windows.Forms.TextBox();
-            this.txtCategoriaProduto = new System.Windows.Forms.TextBox();
             this.idProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nmdProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ctgProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,6 +73,8 @@
             this.qntProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.acao = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.txtIdProduto = new System.Windows.Forms.TextBox();
+            this.txtCategoriaProduto = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantidade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtValorVenda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qntEstoque)).BeginInit();
@@ -398,7 +398,7 @@
             this.btnAdicionar.Name = "btnAdicionar";
             this.btnAdicionar.Size = new System.Drawing.Size(111, 23);
             this.btnAdicionar.TabIndex = 63;
-            this.btnAdicionar.Text = "Adicionar (Space)";
+            this.btnAdicionar.Text = "Adicionar (Insert)";
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
@@ -473,27 +473,9 @@
             this.acao});
             this.dataGridView1.Location = new System.Drawing.Point(766, 17);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(816, 579);
+            this.dataGridView1.Size = new System.Drawing.Size(700, 579);
             this.dataGridView1.TabIndex = 75;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_4);
-            // 
-            // txtIdProduto
-            // 
-            this.txtIdProduto.Enabled = false;
-            this.txtIdProduto.Location = new System.Drawing.Point(709, 96);
-            this.txtIdProduto.Name = "txtIdProduto";
-            this.txtIdProduto.Size = new System.Drawing.Size(49, 20);
-            this.txtIdProduto.TabIndex = 76;
-            this.txtIdProduto.Visible = false;
-            // 
-            // txtCategoriaProduto
-            // 
-            this.txtCategoriaProduto.Enabled = false;
-            this.txtCategoriaProduto.Location = new System.Drawing.Point(664, 96);
-            this.txtCategoriaProduto.Name = "txtCategoriaProduto";
-            this.txtCategoriaProduto.Size = new System.Drawing.Size(94, 20);
-            this.txtCategoriaProduto.TabIndex = 77;
-            this.txtCategoriaProduto.Visible = false;
             // 
             // idProd
             // 
@@ -533,6 +515,24 @@
             this.acao.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.acao.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.acao.Width = 57;
+            // 
+            // txtIdProduto
+            // 
+            this.txtIdProduto.Enabled = false;
+            this.txtIdProduto.Location = new System.Drawing.Point(709, 96);
+            this.txtIdProduto.Name = "txtIdProduto";
+            this.txtIdProduto.Size = new System.Drawing.Size(49, 20);
+            this.txtIdProduto.TabIndex = 76;
+            this.txtIdProduto.Visible = false;
+            // 
+            // txtCategoriaProduto
+            // 
+            this.txtCategoriaProduto.Enabled = false;
+            this.txtCategoriaProduto.Location = new System.Drawing.Point(664, 96);
+            this.txtCategoriaProduto.Name = "txtCategoriaProduto";
+            this.txtCategoriaProduto.Size = new System.Drawing.Size(94, 20);
+            this.txtCategoriaProduto.TabIndex = 77;
+            this.txtCategoriaProduto.Visible = false;
             // 
             // PDV
             // 

@@ -176,5 +176,30 @@ namespace Aurora
                 new Relatorios().Show();
             }
         }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            int idVenda = 103;
+            List<Produto> produtos = BuscarVendasDB.BuscarItensdaVenda(idVenda);
+
+            if(produtos.Count == 0)
+            {
+                MessageBox.Show("Nenhum produto encontrado com esse ID");
+                return;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var produto in produtos)
+            {
+                sb.AppendLine($"Nome: {produto.Nome}");
+                sb.AppendLine($"Quantidade: {produto.Quantidade}");
+                sb.AppendLine($"Valor Unitário: {produto.ValorUnitario:N2}");
+                sb.AppendLine($"Total: R$ {produto.Total:N2}");
+                sb.AppendLine("-----------------------------");
+            }
+
+            MessageBox.Show(sb.ToString(), "Itens da Venda");
+
+        }
     }
 }
