@@ -17,6 +17,7 @@ namespace Aurora
         public AuroraVendas()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -199,6 +200,71 @@ namespace Aurora
             }
 
             MessageBox.Show(sb.ToString(), "Itens da Venda");
+
+        }
+
+        private void AuroraVendas_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void AuroraVendas_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case var PDV when e.KeyCode == Keys.F1:
+                    button1_Click(sender,e);
+                    e.Handled = true;
+                    break;
+
+                case var cancelarVenda when e.KeyCode == Keys.F2:
+                    btnCancelarVenda_Click(sender, e);
+                    e.Handled = true;
+                    break;
+
+                case var cadastroCliente when e.KeyCode == Keys.F3:
+                    btnCadastrarCliente_Click(sender, e);
+                    e.Handled = true; 
+                    break;
+                case var editarCliente when e.KeyCode == Keys.F4:
+                    button2_Click(sender, e);
+                    e.Handled = true;
+                    break;
+                case var cadastrarProduto when e.KeyCode == Keys.F5:
+                    btnCadastrarProduto_Click(sender, e);
+                    e.Handled = true;
+                    break;
+                case var editarProduto when e.KeyCode == Keys.F6:
+                    btnEditarPrdutos_Click(sender, e);
+                    e.Handled = true;
+                    break;
+                case var relatorios when e.KeyCode == Keys.F7:
+                    button1_Click_1(sender, e);
+                    e.Handled = true;
+                    break;
+
+                case var sair when e.KeyCode == Keys.F12:
+                    DialogResult resultado = MessageBox.Show("Deseja realmente sair?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    e.Handled = true;
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        using (var loading = new LoadingForm())
+                        {
+                           loading.ShowDialog();
+                        }
+                    }
+
+                    else
+                    {
+                        return;
+                    }
+                        break;
+            }
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
 
         }
     }

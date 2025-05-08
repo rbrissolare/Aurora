@@ -61,6 +61,10 @@ namespace Aurora
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+
+            
+
+            
             // Criei as Strings e estou recuperando os valores digitado pelo usuário, estou tratando também os espaços em branco.
             string cadastroCodigo = txtCodigoProduto.Text.Trim();
             string cadastroNomeProduto = txtNomeProduto.Text.Trim();
@@ -68,7 +72,38 @@ namespace Aurora
             decimal cadastroValorVenda = txtValorVenda.Value;
             string cadastroQuantidade = txtQuantidade.Text.Trim();
             string cadastroCategoria = txtCategoria.Text.Trim();
-            
+
+
+            if (string.IsNullOrEmpty(cadastroNomeProduto))
+            {
+                MessageBox.Show("Cadastre um Produto");
+                return;
+            }
+
+            if (cadastroValorCusto <= 0)
+            {
+                MessageBox.Show("Cadastre um valor de custo maior que R$ 0,00");
+                return;
+            }
+
+            if (cadastroValorVenda <= 0)
+            {
+                MessageBox.Show("Cadastre um valor de venda maior que R$ 0,00");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(cadastroQuantidade))
+            {
+                MessageBox.Show("Cadastre a quantidade maior 0");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(cadastroCategoria))
+            {
+                MessageBox.Show("Cadastre uma categoria");
+                return;
+            }
+
 
             // Proximo passo vamos montar o comando SQL para realizar o INSERT no DB.
             string inserirProduto = @"INSERT INTO produtos (idprodutos, nome, valor_compra, valor_venda, quantidade, categoria) VALUES (@idProduto, @nomeProduto, @valorCusto, @valorVenda, @quantidade, @categoria);";

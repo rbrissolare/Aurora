@@ -71,7 +71,7 @@
             this.btnCadastrarCliente.Name = "btnCadastrarCliente";
             this.btnCadastrarCliente.Size = new System.Drawing.Size(114, 35);
             this.btnCadastrarCliente.TabIndex = 2;
-            this.btnCadastrarCliente.Text = "Cadastrar Cliente";
+            this.btnCadastrarCliente.Text = "Cadastrar Cliente (F3)";
             this.btnCadastrarCliente.UseVisualStyleBackColor = true;
             this.btnCadastrarCliente.Click += new System.EventHandler(this.btnCadastrarCliente_Click);
             // 
@@ -81,7 +81,7 @@
             this.btnIniciarVenda.Name = "btnIniciarVenda";
             this.btnIniciarVenda.Size = new System.Drawing.Size(114, 35);
             this.btnIniciarVenda.TabIndex = 3;
-            this.btnIniciarVenda.Text = "Iniciar Venda";
+            this.btnIniciarVenda.Text = "Iniciar Venda (F1)";
             this.btnIniciarVenda.UseVisualStyleBackColor = true;
             this.btnIniciarVenda.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -91,7 +91,7 @@
             this.btnEditarCliente.Name = "btnEditarCliente";
             this.btnEditarCliente.Size = new System.Drawing.Size(114, 35);
             this.btnEditarCliente.TabIndex = 4;
-            this.btnEditarCliente.Text = "Editar Cliente";
+            this.btnEditarCliente.Text = "Editar Cliente (F4)";
             this.btnEditarCliente.UseVisualStyleBackColor = true;
             this.btnEditarCliente.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -101,7 +101,7 @@
             this.btnCadastrarProduto.Name = "btnCadastrarProduto";
             this.btnCadastrarProduto.Size = new System.Drawing.Size(114, 35);
             this.btnCadastrarProduto.TabIndex = 5;
-            this.btnCadastrarProduto.Text = "Cadastrar Produto";
+            this.btnCadastrarProduto.Text = "Cadastrar Produto (F5)";
             this.btnCadastrarProduto.UseVisualStyleBackColor = true;
             this.btnCadastrarProduto.Click += new System.EventHandler(this.btnCadastrarProduto_Click);
             // 
@@ -111,7 +111,7 @@
             this.btnEditarPrdutos.Name = "btnEditarPrdutos";
             this.btnEditarPrdutos.Size = new System.Drawing.Size(114, 35);
             this.btnEditarPrdutos.TabIndex = 6;
-            this.btnEditarPrdutos.Text = "Editar Produtos";
+            this.btnEditarPrdutos.Text = "Editar Produtos (F6)";
             this.btnEditarPrdutos.UseVisualStyleBackColor = true;
             this.btnEditarPrdutos.Click += new System.EventHandler(this.btnEditarPrdutos_Click);
             // 
@@ -121,7 +121,7 @@
             this.btnCancelarVenda.Name = "btnCancelarVenda";
             this.btnCancelarVenda.Size = new System.Drawing.Size(114, 35);
             this.btnCancelarVenda.TabIndex = 7;
-            this.btnCancelarVenda.Text = "Cancelar Vendas";
+            this.btnCancelarVenda.Text = "Cancelar Vendas (F2)";
             this.btnCancelarVenda.UseVisualStyleBackColor = true;
             this.btnCancelarVenda.Click += new System.EventHandler(this.btnCancelarVenda_Click);
             // 
@@ -131,7 +131,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 35);
             this.button1.TabIndex = 8;
-            this.button1.Text = "Relatorios";
+            this.button1.Text = "Relatorios (F7)";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -166,6 +166,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Aurora Vendas";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.AuroraVendas_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AuroraVendas_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

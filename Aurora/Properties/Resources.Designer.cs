@@ -73,6 +73,26 @@ namespace Aurora.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap carregando {
+            get {
+                object obj = ResourceManager.GetObject("carregando", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap loading_15146_512 {
+            get {
+                object obj = ResourceManager.GetObject("loading-15146_512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logoAuroraVendas {
             get {
                 object obj = ResourceManager.GetObject("logoAuroraVendas", resourceCulture);
