@@ -99,99 +99,99 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CadastroProduto.cs">
+    <Compile Include="Views\Views_Cadastro\CadastroProduto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CadastroProduto.Designer.cs">
+    <Compile Include="Views\Views_Cadastro\CadastroProduto.Designer.cs">
       <DependentUpon>CadastroProduto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bematech.cs" />
-    <Compile Include="BuscarVendasDB.cs" />
-    <Compile Include="EmitirCupom.cs" />
-    <Compile Include="LoadingForm.cs">
+    <Compile Include="Helpers\Bematech.cs" />
+    <Compile Include="Models\BuscarVendasDB.cs" />
+    <Compile Include="Helpers\EmitirCupom.cs" />
+    <Compile Include="Views\LoadingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoadingForm.Designer.cs">
+    <Compile Include="Views\LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Produto.cs" />
-    <Compile Include="RawPrinterHelper.cs" />
-    <Compile Include="ConexaoDB.cs" />
-    <Compile Include="AuroraVendas.cs">
+    <Compile Include="Models\Produto.cs" />
+    <Compile Include="Helpers\RawPrinterHelper.cs" />
+    <Compile Include="Repositories\ConexaoDB.cs" />
+    <Compile Include="Views\AuroraVendas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AuroraVendas.Designer.cs">
+    <Compile Include="Views\AuroraVendas.Designer.cs">
       <DependentUpon>AuroraVendas.cs</DependentUpon>
     </Compile>
-    <Compile Include="CadastroCliente.cs">
+    <Compile Include="Views\Views_Cadastro\CadastroCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CadastroCliente.Designer.cs">
+    <Compile Include="Views\Views_Cadastro\CadastroCliente.Designer.cs">
       <DependentUpon>CadastroCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditarCliente.cs">
+    <Compile Include="Views\Views_Edicao\EditarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditarCliente.Designer.cs">
+    <Compile Include="Views\Views_Edicao\EditarCliente.Designer.cs">
       <DependentUpon>EditarCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditarProdutos.cs">
+    <Compile Include="Views\Views_Edicao\EditarProdutos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditarProdutos.Designer.cs">
+    <Compile Include="Views\Views_Edicao\EditarProdutos.Designer.cs">
       <DependentUpon>EditarProdutos.cs</DependentUpon>
     </Compile>
-    <Compile Include="CancelarVenda.cs">
+    <Compile Include="Views\CancelarVenda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CancelarVenda.Designer.cs">
+    <Compile Include="Views\CancelarVenda.Designer.cs">
       <DependentUpon>CancelarVenda.cs</DependentUpon>
     </Compile>
-    <Compile Include="Relatorios.cs">
+    <Compile Include="Views\Relatorios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Relatorios.Designer.cs">
+    <Compile Include="Views\Relatorios.Designer.cs">
       <DependentUpon>Relatorios.cs</DependentUpon>
     </Compile>
-    <Compile Include="PDV.cs">
+    <Compile Include="Views\PDV.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PDV.Designer.cs">
+    <Compile Include="Views\PDV.Designer.cs">
       <DependentUpon>PDV.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Views\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="Views\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AuroraVendas.resx">
+    <EmbeddedResource Include="Views\AuroraVendas.resx">
       <DependentUpon>AuroraVendas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CadastroCliente.resx">
+    <EmbeddedResource Include="Views\Views_Cadastro\CadastroCliente.resx">
       <DependentUpon>CadastroCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CadastroProduto.resx">
+    <EmbeddedResource Include="Views\Views_Cadastro\CadastroProduto.resx">
       <DependentUpon>CadastroProduto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CancelarVenda.resx">
+    <EmbeddedResource Include="Views\CancelarVenda.resx">
       <DependentUpon>CancelarVenda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditarCliente.resx">
+    <EmbeddedResource Include="Views\Views_Edicao\EditarCliente.resx">
       <DependentUpon>EditarCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditarProdutos.resx">
+    <EmbeddedResource Include="Views\Views_Edicao\EditarProdutos.resx">
       <DependentUpon>EditarProdutos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoadingForm.resx">
+    <EmbeddedResource Include="Views\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PDV.resx">
+    <EmbeddedResource Include="Views\PDV.resx">
       <DependentUpon>PDV.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="Views\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -204,7 +204,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Relatorios.resx">
+    <EmbeddedResource Include="Views\Relatorios.resx">
       <DependentUpon>Relatorios.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -236,5 +236,6 @@
   <ItemGroup>
     <None Include="Resources\loading-15146_512.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.lblUsuarioSistema = new System.Windows.Forms.Label();
             this.btnCadastrarCliente = new System.Windows.Forms.Button();
             this.btnIniciarVenda = new System.Windows.Forms.Button();
             this.btnEditarCliente = new System.Windows.Forms.Button();
@@ -37,37 +35,11 @@
             this.btnEditarPrdutos = new System.Windows.Forms.Button();
             this.btnCancelarVenda = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CausesValidation = false;
-            this.dateTimePicker1.Checked = false;
-            this.dateTimePicker1.Cursor = System.Windows.Forms.Cursors.No;
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy H:m";
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(800, 12);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(132, 20);
-            this.dateTimePicker1.TabIndex = 0;
-            this.dateTimePicker1.TabStop = false;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
-            // lblUsuarioSistema
-            // 
-            this.lblUsuarioSistema.AutoSize = true;
-            this.lblUsuarioSistema.Location = new System.Drawing.Point(1499, 12);
-            this.lblUsuarioSistema.Name = "lblUsuarioSistema";
-            this.lblUsuarioSistema.Size = new System.Drawing.Size(73, 13);
-            this.lblUsuarioSistema.TabIndex = 1;
-            this.lblUsuarioSistema.Text = "nome_usuario";
-            this.lblUsuarioSistema.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnCadastrarCliente
             // 
-            this.btnCadastrarCliente.Location = new System.Drawing.Point(169, 45);
+            this.btnCadastrarCliente.Location = new System.Drawing.Point(169, 12);
             this.btnCadastrarCliente.Name = "btnCadastrarCliente";
             this.btnCadastrarCliente.Size = new System.Drawing.Size(114, 35);
             this.btnCadastrarCliente.TabIndex = 2;
@@ -77,7 +49,7 @@
             // 
             // btnIniciarVenda
             // 
-            this.btnIniciarVenda.Location = new System.Drawing.Point(15, 45);
+            this.btnIniciarVenda.Location = new System.Drawing.Point(15, 12);
             this.btnIniciarVenda.Name = "btnIniciarVenda";
             this.btnIniciarVenda.Size = new System.Drawing.Size(114, 35);
             this.btnIniciarVenda.TabIndex = 3;
@@ -87,7 +59,7 @@
             // 
             // btnEditarCliente
             // 
-            this.btnEditarCliente.Location = new System.Drawing.Point(169, 105);
+            this.btnEditarCliente.Location = new System.Drawing.Point(169, 73);
             this.btnEditarCliente.Name = "btnEditarCliente";
             this.btnEditarCliente.Size = new System.Drawing.Size(114, 35);
             this.btnEditarCliente.TabIndex = 4;
@@ -97,7 +69,7 @@
             // 
             // btnCadastrarProduto
             // 
-            this.btnCadastrarProduto.Location = new System.Drawing.Point(329, 45);
+            this.btnCadastrarProduto.Location = new System.Drawing.Point(329, 12);
             this.btnCadastrarProduto.Name = "btnCadastrarProduto";
             this.btnCadastrarProduto.Size = new System.Drawing.Size(114, 35);
             this.btnCadastrarProduto.TabIndex = 5;
@@ -107,7 +79,7 @@
             // 
             // btnEditarPrdutos
             // 
-            this.btnEditarPrdutos.Location = new System.Drawing.Point(329, 105);
+            this.btnEditarPrdutos.Location = new System.Drawing.Point(329, 73);
             this.btnEditarPrdutos.Name = "btnEditarPrdutos";
             this.btnEditarPrdutos.Size = new System.Drawing.Size(114, 35);
             this.btnEditarPrdutos.TabIndex = 6;
@@ -117,7 +89,7 @@
             // 
             // btnCancelarVenda
             // 
-            this.btnCancelarVenda.Location = new System.Drawing.Point(15, 105);
+            this.btnCancelarVenda.Location = new System.Drawing.Point(15, 73);
             this.btnCancelarVenda.Name = "btnCancelarVenda";
             this.btnCancelarVenda.Size = new System.Drawing.Size(114, 35);
             this.btnCancelarVenda.TabIndex = 7;
@@ -127,7 +99,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(15, 164);
+            this.button1.Location = new System.Drawing.Point(15, 129);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 35);
             this.button1.TabIndex = 8;
@@ -135,24 +107,12 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(802, 308);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 37);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
             // AuroraVendas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1584, 861);
-            this.Controls.Add(this.button2);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackgroundImage = global::Aurora.Properties.Resources.backgroundTelaLogin;
+            this.ClientSize = new System.Drawing.Size(494, 196);
+            this.ControlBox = false;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCancelarVenda);
             this.Controls.Add(this.btnEditarPrdutos);
@@ -160,23 +120,17 @@
             this.Controls.Add(this.btnEditarCliente);
             this.Controls.Add(this.btnIniciarVenda);
             this.Controls.Add(this.btnCadastrarCliente);
-            this.Controls.Add(this.lblUsuarioSistema);
-            this.Controls.Add(this.dateTimePicker1);
             this.Name = "AuroraVendas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Aurora Vendas";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.TransparencyKey = System.Drawing.Color.Red;
             this.Load += new System.EventHandler(this.AuroraVendas_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AuroraVendas_KeyDown);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label lblUsuarioSistema;
         private System.Windows.Forms.Button btnCadastrarCliente;
         private System.Windows.Forms.Button btnIniciarVenda;
         private System.Windows.Forms.Button btnEditarCliente;
@@ -184,6 +138,5 @@
         private System.Windows.Forms.Button btnEditarPrdutos;
         private System.Windows.Forms.Button btnCancelarVenda;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
     }
 }

@@ -231,7 +231,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(590, 326);
             this.Controls.Add(this.txtCategoria);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtCodigoProduto);
@@ -248,6 +248,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "CadastroProduto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Produto";
             ((System.ComponentModel.ISupportInitialize)(this.txtValorCusto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtValorVenda)).EndInit();

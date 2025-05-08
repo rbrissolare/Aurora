@@ -316,6 +316,7 @@
             this.Controls.Add(this.txtBuscaCPF);
             this.Controls.Add(this.label1);
             this.Name = "EditarCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edição de Clientes";
             this.ResumeLayout(false);
             this.PerformLayout();

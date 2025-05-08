@@ -213,7 +213,7 @@ namespace Aurora
             switch (e.KeyCode)
             {
                 case var PDV when e.KeyCode == Keys.F1:
-                    button1_Click(sender,e);
+                    button1_Click(sender, e);
                     e.Handled = true;
                     break;
 
@@ -224,7 +224,7 @@ namespace Aurora
 
                 case var cadastroCliente when e.KeyCode == Keys.F3:
                     btnCadastrarCliente_Click(sender, e);
-                    e.Handled = true; 
+                    e.Handled = true;
                     break;
                 case var editarCliente when e.KeyCode == Keys.F4:
                     button2_Click(sender, e);
@@ -251,19 +251,24 @@ namespace Aurora
                     {
                         using (var loading = new LoadingForm())
                         {
-                           loading.ShowDialog();
+                          
+                            Application.ExitThread();
                         }
                     }
-
                     else
                     {
                         return;
                     }
-                        break;
+                    break;
             }
         }
 
         private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
         {
 
         }

@@ -246,7 +246,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(703, 378);
+            this.ClientSize = new System.Drawing.Size(580, 270);
             this.Controls.Add(this.txtCodigoProduto);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSair);
@@ -265,6 +265,7 @@
             this.Controls.Add(this.txtPesquisarProduto);
             this.Controls.Add(this.label1);
             this.Name = "EditarProdutos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Editar Produtos";
             ((System.ComponentModel.ISupportInitialize)(this.txtValorCusto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtValorVenda)).EndInit();
