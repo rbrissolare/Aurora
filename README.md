@@ -4,12 +4,17 @@ Este projeto é uma oportunidade para colocar em prática conceitos fundamentais
 
 Se você também está começando ou deseja colaborar, fique à vontade para explorar o código e sugerir melhorias! Este é um espaço para aprender e crescer juntos.
 
-Recursos Principais
+Recursos Principais:
 Gerenciamento de Vendas : Registro e consulta de transações comerciais.
+
 Organização de Dados : Armazenamento e processamento de informações relevantes para o negócio.
+
 Interface Usuário : (Em desenvolvimento) Facilitar a interação com o sistema.
-Como Contribuir
+
+Como Contribuir:
+
 Repositório : [GitHub - AuroraVendas - https://github.com/rbrissolare/Aurora](https://github.com/rbrissolare/Aurora)
+
 Wiki : [Documentação Detalhada](https://github.com/rbrissolare/Aurora/wiki)
 
 Se tiver dúvidas, sugestões ou quiser colaborar, sinta-se à vontade para entrar em contato!
