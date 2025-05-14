@@ -99,6 +99,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\BuscarClienteDaVenda.cs" />
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Views\AutoCloseMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AutoCloseMessageBox.Designer.cs">
+      <DependentUpon>AutoCloseMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Views_Cadastro\CadastroProduto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +177,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Views\AuroraVendas.resx">
       <DependentUpon>AuroraVendas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AutoCloseMessageBox.resx">
+      <DependentUpon>AutoCloseMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Views_Cadastro\CadastroCliente.resx">
       <DependentUpon>CadastroCliente.cs</DependentUpon>

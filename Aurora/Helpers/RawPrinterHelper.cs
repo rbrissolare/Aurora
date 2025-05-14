@@ -68,13 +68,23 @@ namespace Aurora
 
         public static bool SendStringToPrinter(string szPrinterName, string szString)
         {
-            IntPtr pBytes;
-            int dwCount;
-            dwCount = szString.Length;
-            pBytes = Marshal.StringToHGlobalAnsi(szString);
-            bool bSuccess = SendBytesToPrinter(szPrinterName, pBytes, dwCount);
-            Marshal.FreeHGlobal(pBytes);
-            return bSuccess;
+            // Codifica a string usando CP860 (Português)
+            Encoding encoding = Encoding.GetEncoding(860); // CP860
+
+            // Converte a string para array de bytes CP860
+            byte[] bytes = encoding.GetBytes(szString);
+
+            // Aloca memória não gerenciada
+            IntPtr unmanagedBytes = Marshal.AllocHGlobal(bytes.Length);
+            Marshal.Copy(bytes, 0, unmanagedBytes, bytes.Length);
+
+            // Envia os bytes para a impressora
+            bool success = SendBytesToPrinter(szPrinterName, unmanagedBytes, bytes.Length);
+
+            // Libera a memória alocada
+            Marshal.FreeHGlobal(unmanagedBytes);
+
+            return success;
         }
     }
 }

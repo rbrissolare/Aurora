@@ -441,7 +441,7 @@
             // 
             // btnFinalizarVenda
             // 
-            this.btnFinalizarVenda.Location = new System.Drawing.Point(555, 559);
+            this.btnFinalizarVenda.Location = new System.Drawing.Point(574, 376);
             this.btnFinalizarVenda.Name = "btnFinalizarVenda";
             this.btnFinalizarVenda.Size = new System.Drawing.Size(123, 37);
             this.btnFinalizarVenda.TabIndex = 73;
@@ -538,7 +538,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1675, 641);
+            this.ClientSize = new System.Drawing.Size(1604, 641);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnFinalizarVenda);
             this.Controls.Add(this.lblTotalGeral);

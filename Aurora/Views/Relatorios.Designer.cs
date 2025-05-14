@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dtpInicio = new System.Windows.Forms.DateTimePicker();
             this.dtpFim = new System.Windows.Forms.DateTimePicker();
             this.cboxCategorias = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.dvgRelatorio = new System.Windows.Forms.DataGridView();
-            this.valorTotal = new System.Windows.Forms.Label();
             this.idprodutos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idvendas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -113,11 +112,11 @@
             this.dvgRelatorio.AllowUserToAddRows = false;
             this.dvgRelatorio.AllowUserToDeleteRows = false;
             this.dvgRelatorio.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightYellow;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dvgRelatorio.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightYellow;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dvgRelatorio.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dvgRelatorio.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.dvgRelatorio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dvgRelatorio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -135,21 +134,12 @@
             this.total_bruto});
             this.dvgRelatorio.Location = new System.Drawing.Point(19, 64);
             this.dvgRelatorio.Name = "dvgRelatorio";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Ivory;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dvgRelatorio.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Ivory;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dvgRelatorio.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dvgRelatorio.Size = new System.Drawing.Size(1244, 332);
             this.dvgRelatorio.TabIndex = 5;
-            // 
-            // valorTotal
-            // 
-            this.valorTotal.AutoSize = true;
-            this.valorTotal.Location = new System.Drawing.Point(16, 413);
-            this.valorTotal.Name = "valorTotal";
-            this.valorTotal.Size = new System.Drawing.Size(54, 13);
-            this.valorTotal.TabIndex = 6;
-            this.valorTotal.Text = "valorTotal";
             // 
             // idprodutos
             // 
@@ -213,10 +203,8 @@
             // 
             // Relatorios
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1397, 476);
-            this.Controls.Add(this.valorTotal);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(1271, 401);
             this.Controls.Add(this.dvgRelatorio);
             this.Controls.Add(this.btnPesquisar);
             this.Controls.Add(this.label1);
@@ -226,7 +214,6 @@
             this.Name = "Relatorios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relatorios";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Relatorios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dvgRelatorio)).EndInit();
             this.ResumeLayout(false);
@@ -242,7 +229,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.DataGridView dvgRelatorio;
-        private System.Windows.Forms.Label valorTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn idprodutos;
         private System.Windows.Forms.DataGridViewTextBoxColumn idvendas;
         private System.Windows.Forms.DataGridViewTextBoxColumn nome;
