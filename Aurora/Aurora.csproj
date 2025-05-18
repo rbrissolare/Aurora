@@ -100,11 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\BuscarClienteDaVenda.cs" />
+    <Compile Include="Models\Pagamento.cs" />
     <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Views\AutoCloseMessageBox.cs">
+    <Compile Include="Views\Views_Carregamento\AutoCloseMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\AutoCloseMessageBox.Designer.cs">
+    <Compile Include="Views\Views_Carregamento\AutoCloseMessageBox.Designer.cs">
       <DependentUpon>AutoCloseMessageBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Views_Cadastro\CadastroProduto.cs">
@@ -116,10 +117,10 @@
     <Compile Include="Helpers\Bematech.cs" />
     <Compile Include="Models\BuscarVendasDB.cs" />
     <Compile Include="Helpers\EmitirCupom.cs" />
-    <Compile Include="Views\LoadingForm.cs">
+    <Compile Include="Views\Views_Carregamento\LoadingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\LoadingForm.Designer.cs">
+    <Compile Include="Views\Views_Carregamento\LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Produto.cs" />
@@ -178,7 +179,7 @@
     <EmbeddedResource Include="Views\AuroraVendas.resx">
       <DependentUpon>AuroraVendas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\AutoCloseMessageBox.resx">
+    <EmbeddedResource Include="Views\Views_Carregamento\AutoCloseMessageBox.resx">
       <DependentUpon>AutoCloseMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Views_Cadastro\CadastroCliente.resx">
@@ -196,7 +197,7 @@
     <EmbeddedResource Include="Views\Views_Edicao\EditarProdutos.resx">
       <DependentUpon>EditarProdutos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\LoadingForm.resx">
+    <EmbeddedResource Include="Views\Views_Carregamento\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PDV.resx">
