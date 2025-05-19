@@ -277,11 +277,14 @@ namespace Aurora
 
         private void button2_Click_2(object sender, EventArgs e)
         {
-            decimal ValorTransacao = 15500;
-            int Parcelas = 20;
+            decimal ValorTransacao = 1000;
+
+            int Parcelas = 7;
+
 
             string creditoAVista = "CREDITO_A_VISTA";
             string creditoParceladoLoja = "CREDITO_PARCELADO_LOJA";
+            string creditoParceladoCliente = "CREDITO_PARCELADO_CLIENTE";
 
             Pagamento pagamento = new Pagamento();
 
@@ -307,12 +310,40 @@ namespace Aurora
 
                     decimal valorComJurosParceladoLoja = ValorTransacao / pagamento.ValorBase;
 
-                    if(Parcelas >= 6)
+                    if(Parcelas == 6)
                     {
-                      decimal buscarJurosParceladoLoja = valorComJurosParceladoLoja * pagamento.taxaJurosParc;
+                      decimal buscarJurosParceladoLoja = valorComJurosParceladoLoja * pagamento.taxaJurosParcSix;
                       decimal valorTotalTransacaoFinalParceladoLoja = ValorTransacao + buscarJurosParceladoLoja;
                       decimal parcelamentos = valorTotalTransacaoFinalParceladoLoja / Parcelas;
                       MessageBox.Show($"Total da venda com juros: {valorTotalTransacaoFinalParceladoLoja:C}.\n\nParcelado em {Parcelas}x de {parcelamentos:C} mensal", $"Crédito Parcelamento Loja: {Parcelas} parcelas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if (Parcelas == 7)
+                    {
+                        decimal buscarJurosParceladoLoja = valorComJurosParceladoLoja * pagamento.taxaJurosParcSeven;
+                        decimal valorTotalTransacaoFinalParceladoLoja = ValorTransacao + buscarJurosParceladoLoja;
+                        decimal parcelamentos = valorTotalTransacaoFinalParceladoLoja / Parcelas;
+                        MessageBox.Show($"Total da venda com juros: {valorTotalTransacaoFinalParceladoLoja:C}.\n\nParcelado em {Parcelas}x de {parcelamentos:C} mensal", $"Crédito Parcelamento Loja: {Parcelas} parcelas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if (Parcelas == 8)
+                    {
+                        decimal buscarJurosParceladoLoja = valorComJurosParceladoLoja * pagamento.taxaJurosParcEight;
+                        decimal valorTotalTransacaoFinalParceladoLoja = ValorTransacao + buscarJurosParceladoLoja;
+                        decimal parcelamentos = valorTotalTransacaoFinalParceladoLoja / Parcelas;
+                        MessageBox.Show($"Total da venda com juros: {valorTotalTransacaoFinalParceladoLoja:C}.\n\nParcelado em {Parcelas}x de {parcelamentos:C} mensal", $"Crédito Parcelamento Loja: {Parcelas} parcelas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if (Parcelas == 9)
+                    {
+                        decimal buscarJurosParceladoLoja = valorComJurosParceladoLoja * pagamento.taxaJurosParcNine;
+                        decimal valorTotalTransacaoFinalParceladoLoja = ValorTransacao + buscarJurosParceladoLoja;
+                        decimal parcelamentos = valorTotalTransacaoFinalParceladoLoja / Parcelas;
+                        MessageBox.Show($"Total da venda com juros: {valorTotalTransacaoFinalParceladoLoja:C}.\n\nParcelado em {Parcelas}x de {parcelamentos:C} mensal", $"Crédito Parcelamento Loja: {Parcelas} parcelas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if(Parcelas == 10)
+                    {
+                        decimal buscarJurosParceladoLoja = valorComJurosParceladoLoja * pagamento.taxaJurosParcTen;
+                        decimal valorTotalTransacaoFinalParceladoLoja = ValorTransacao + buscarJurosParceladoLoja;
+                        decimal parcelamentos = valorTotalTransacaoFinalParceladoLoja / Parcelas;
+                        MessageBox.Show($"Total da venda com juros: {valorTotalTransacaoFinalParceladoLoja:C}.\n\nParcelado em {Parcelas}x de {parcelamentos:C} mensal", $"Crédito Parcelamento Loja: {Parcelas} parcelas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -322,6 +353,58 @@ namespace Aurora
                         MessageBox.Show($"Total da venda com juros: {valorTotalTransacaoFinalParceladoLoja:C}.\n\nParcelado em {Parcelas}x de {parcelamentos:C} mensal", $"Crédito Parcelamento Loja: {Parcelas} parcelas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     break;
+
+                case "CREDITO_PARCELADO_CLIENTE":
+                    pagamento.NomeTransacao = "CREDITO_PARCELADO_CLIENTE";
+                    pagamento.ParcelasTransacao = new List<int> { Parcelas }; // Atribuir uma lista de inteiros
+                    pagamento.ObterTransacao(pagamento.NomeTransacao, pagamento.ParcelasTransacao);
+
+                    decimal valorComJurosParceladoCliente = ValorTransacao / pagamento.ValorBase;
+
+                    if (Parcelas == 12)
+                    {
+                        decimal buscarJurosParceladoLoja = valorComJurosParceladoCliente * pagamento.JurosTransacao;
+                        decimal valorTotalTransacaoFinalParceladoLoja = ValorTransacao + buscarJurosParceladoLoja + pagamento.taxaJurosParcelamentoCliente;
+                        decimal parcelamentos = valorTotalTransacaoFinalParceladoLoja / Parcelas;
+                        MessageBox.Show($"Total da venda com juros: {valorTotalTransacaoFinalParceladoLoja:C}.\n\nParcelado em {Parcelas}x de {parcelamentos:C} mensal", $"Crédito Parcelamento Loja: {Parcelas} parcelas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if (Parcelas == 14)
+                    {
+                        decimal buscarJurosParceladoLoja = valorComJurosParceladoCliente * pagamento.JurosTransacao;
+                        decimal valorTotalTransacaoFinalParceladoLoja = ValorTransacao + buscarJurosParceladoLoja + pagamento.taxaJurosParcelamentoCliente;
+                        decimal parcelamentos = valorTotalTransacaoFinalParceladoLoja / Parcelas;
+                        MessageBox.Show($"Total da venda com juros: {valorTotalTransacaoFinalParceladoLoja:C}.\n\nParcelado em {Parcelas}x de {parcelamentos:C} mensal", $"Crédito Parcelamento Loja: {Parcelas} parcelas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if (Parcelas == 16)
+                    {
+                        decimal buscarJurosParceladoLoja = valorComJurosParceladoCliente * pagamento.JurosTransacao;
+                        decimal valorTotalTransacaoFinalParceladoLoja = ValorTransacao + buscarJurosParceladoLoja + pagamento.taxaJurosParcelamentoCliente;
+                        decimal parcelamentos = valorTotalTransacaoFinalParceladoLoja / Parcelas;
+                        MessageBox.Show($"Total da venda com juros: {valorTotalTransacaoFinalParceladoLoja:C}.\n\nParcelado em {Parcelas}x de {parcelamentos:C} mensal", $"Crédito Parcelamento Loja: {Parcelas} parcelas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if (Parcelas == 18)
+                    {
+                        decimal buscarJurosParceladoLoja = valorComJurosParceladoCliente * pagamento.JurosTransacao;
+                        decimal valorTotalTransacaoFinalParceladoLoja = ValorTransacao + buscarJurosParceladoLoja + pagamento.taxaJurosParcelamentoCliente;
+                        decimal parcelamentos = valorTotalTransacaoFinalParceladoLoja / Parcelas;
+                        MessageBox.Show($"Total da venda com juros: {valorTotalTransacaoFinalParceladoLoja:C}.\n\nParcelado em {Parcelas}x de {parcelamentos:C} mensal", $"Crédito Parcelamento Loja: {Parcelas} parcelas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if (Parcelas == 20)
+                    {
+                        decimal buscarJurosParceladoLoja = valorComJurosParceladoCliente * pagamento.JurosTransacao;
+                        decimal valorTotalTransacaoFinalParceladoLoja = ValorTransacao + buscarJurosParceladoLoja + pagamento.taxaJurosParcelamentoCliente;
+                        decimal parcelamentos = valorTotalTransacaoFinalParceladoLoja / Parcelas;
+                        MessageBox.Show($"Total da venda com juros: {valorTotalTransacaoFinalParceladoLoja:C}.\n\nParcelado em {Parcelas}x de {parcelamentos:C} mensal", $"Crédito Parcelamento Loja: {Parcelas} parcelas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        decimal buscarJurosParceladoLoja = valorComJurosParceladoCliente * pagamento.JurosTransacao;
+                        decimal valorTotalTransacaoFinalParceladoLoja = ValorTransacao + buscarJurosParceladoLoja + pagamento.taxaJurosParcelamentoCliente;
+                        decimal parcelamentos = valorTotalTransacaoFinalParceladoLoja / Parcelas;
+                        MessageBox.Show($"Total da venda com juros: {valorTotalTransacaoFinalParceladoLoja:C}.\n\nParcelado em {Parcelas}x de {parcelamentos:C} mensal", $"Crédito Parcelamento Loja: {Parcelas} parcelas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    break;
+
             }
         }
     }
